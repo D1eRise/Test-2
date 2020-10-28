@@ -29,17 +29,17 @@ if ($_POST['email'] && $_POST['password'] && $_POST['confPass']) {
 			$result["message"] = "Пользователь с таким электронным адресом уже существует!";
 		}
 	}
-    if ($result["status"] != "error") {
-    	$password = $_POST["password"];
-        if ($password != $_POST["confPass"]) {
-        	file_put_contents('registration.log', 'Проверка завершилась неудачно (пароли не совпадают).' . PHP_EOL, FILE_APPEND);
-        	$result["status"] = "error";
-        	$result["message"] = "Пароли не совпадают!";
-        } else {
-        	file_put_contents('registration.log', 'Проверка завершилась успешно.' . PHP_EOL, FILE_APPEND);
-        	$result["status"] = "success";
-        }
-    }
+    	if ($result["status"] != "error") {
+    		$password = $_POST["password"];
+        	if ($password != $_POST["confPass"]) {
+        		file_put_contents('registration.log', 'Проверка завершилась неудачно (пароли не совпадают).' . PHP_EOL, FILE_APPEND);
+        		$result["status"] = "error";
+        		$result["message"] = "Пароли не совпадают!";
+        	} else {
+        		file_put_contents('registration.log', 'Проверка завершилась успешно.' . PHP_EOL, FILE_APPEND);
+        		$result["status"] = "success";
+        	}
+    	}
 } else {
 	file_put_contents('registration.log', 'Проверка завершилась неудачно (не все обязательные поля заполнены).' . PHP_EOL, FILE_APPEND);
 	$result["status"] = "error";
