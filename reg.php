@@ -29,9 +29,9 @@ if ($_POST['email'] && $_POST['password'] && $_POST['confPass']) {
 			$result["message"] = "Пользователь с таким электронным адресом уже существует!";
 		}
 	}
-    	if ($result["status"] != "error") {
+    	if ($result["status"] !== "error") {
     		$password = $_POST["password"];
-        	if ($password != $_POST["confPass"]) {
+        	if ($password !== $_POST["confPass"]) {
         		file_put_contents('registration.log', 'Проверка завершилась неудачно (пароли не совпадают).' . PHP_EOL, FILE_APPEND);
         		$result["status"] = "error";
         		$result["message"] = "Пароли не совпадают!";
